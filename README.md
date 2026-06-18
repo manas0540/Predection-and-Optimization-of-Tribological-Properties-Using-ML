@@ -2,22 +2,28 @@
 
 ## Overview
 
-This project predicts the **Wear Rate (WR)** and **Coefficient of Friction (COF)** of **Copper–Graphite–Titanium Carbide (Cu–Gr–TiC) composites** under lubricated sliding conditions using Machine Learning techniques.
+This project focuses on predicting and optimizing the tribological properties of Copper–Graphite–Titanium Carbide (Cu–Gr–TiC) composites under lubricated sliding conditions using Machine Learning techniques.
 
-The study combines **tribological experimental data** with **machine learning models** to reduce the need for expensive and time-consuming physical testing while enabling rapid material performance prediction.
+The study combines experimental tribological data with machine learning models to accurately predict:
+
+- Wear Rate (WR)
+- Coefficient of Friction (COF)
+
+This approach reduces the need for costly and time-consuming experimental trials while accelerating material design and optimization.
 
 ---
 
 ## Problem Statement
 
-Traditional tribological experiments require significant time, resources, and laboratory effort.
+Traditional tribological experimentation requires extensive laboratory testing, resources, and time.
 
-The objective of this project is to develop **data-driven predictive models** capable of estimating:
+The objective of this work is to develop data-driven predictive models capable of estimating wear behavior and friction characteristics of Cu–Gr–TiC composites using process and material parameters.
 
-- Wear Rate (WR)
-- Coefficient of Friction (COF)
+---
 
-using process and material parameters.
+## Machine Learning Workflow
+
+![Workflow](images/workflow_page14.png)
 
 ---
 
@@ -28,8 +34,8 @@ using process and material parameters.
 | Feature | Description |
 |----------|------------|
 | Load | Applied Load (N) |
-| Distance | Sliding Distance (m) |
-| Composition | TiC Reinforcement Content (wt%) |
+| Sliding Distance | Sliding Distance (m) |
+| TiC Content | Titanium Carbide Reinforcement (wt%) |
 
 ### Target Variables
 
@@ -42,57 +48,60 @@ using process and material parameters.
 
 ## Methodology
 
-The workflow followed in this study is:
+The complete workflow followed in this project:
 
-1. **Data Collection**
-2. **Data Cleaning and Preprocessing**
-3. **Exploratory Data Analysis (EDA)**
-4. **Correlation Analysis**
-5. **Train-Test Split**
-6. **Model Training**
-7. **Model Evaluation**
-8. **Prediction and Optimization**
+1. Data Collection
+2. Data Cleaning and Preprocessing
+3. Exploratory Data Analysis (EDA)
+4. Correlation Analysis
+5. Train-Test Split
+6. Model Training
+7. Hyperparameter Tuning
+8. Model Evaluation
+9. Prediction and Optimization
 
 ---
 
 ## Machine Learning Models Used
 
-### 1. Artificial Neural Network (ANN)
+### Artificial Neural Network (ANN)
 
-- Hidden Layer Architecture: **64-32-16**
-- Activation Function: **ReLU**
-- Optimizer: **Adam**
-- Suitable for capturing complex nonlinear relationships.
+- Hidden Layer Architecture: 64-32-16
+- Activation Function: ReLU
+- Learning Rate: 0.001
+- Optimizer: Adam
 
-### 2. Random Forest Regression (RF)
+### Random Forest Regression (RF)
 
-- Ensemble-based regression model.
-- Robust against noisy data.
-- Reduces overfitting through multiple decision trees.
+- Ensemble-based regression model
+- Robust against noisy data
+- Reduces overfitting using multiple decision trees
 
-### 3. Support Vector Regression (SVR)
+### Support Vector Regression (SVR)
 
-- Kernel: **RBF (Radial Basis Function)**
-- Performs well on small datasets.
-- Effective for nonlinear prediction problems.
+- RBF Kernel
+- Effective for nonlinear prediction problems
+- Performs exceptionally well on small datasets
 
-### 4. K-Nearest Neighbors (KNN)
+### K-Nearest Neighbors (KNN)
 
-- Distance-based regression algorithm.
-- Simple and interpretable.
-- Makes predictions using neighboring observations.
+- Distance-based regression algorithm
+- Simple and interpretable
+- Makes predictions using nearest neighboring samples
 
 ---
 
-## Exploratory Data Analysis (EDA)
+# Exploratory Data Analysis (EDA)
+
+![Correlation Heatmap](images/correlation_heatmap_page15.png)
 
 ### Key Observations
 
-- **Load** showed a strong positive correlation with **Wear Rate**.
-- **Load** significantly influenced **Coefficient of Friction (COF)**.
-- Increasing **TiC content** reduced Wear Rate.
-- TiC reinforcement improved overall tribological performance.
-- Load was identified as the most influential process parameter.
+- Load showed a strong positive correlation with Wear Rate (+0.80).
+- Load showed a strong positive correlation with COF (+0.77).
+- Increasing TiC content reduced Wear Rate.
+- TiC reinforcement improved tribological performance.
+- Load was identified as the most influential parameter affecting both responses.
 
 ---
 
@@ -120,12 +129,13 @@ The following metrics were used to evaluate model performance:
 | KNN | 0.0855 | 0.0967 | 0.8106 | 10.70 |
 | SVR | 0.0592 | 0.0742 | **0.8887** | **6.24** |
 
-### Best Model for Wear Rate Prediction
+### Best Wear Rate Model
 
-**Support Vector Regression (SVR)** achieved the highest prediction accuracy with:
+**Support Vector Regression (SVR)**
 
-- **R² Score = 0.8887**
-- **MAPE = 6.24%**
+- R² Score = 0.8887
+- RMSE = 0.0742
+- MAPE = 6.24%
 
 ---
 
@@ -138,23 +148,36 @@ The following metrics were used to evaluate model performance:
 | SVR | 0.002201 | 0.002776 | 0.8387 | 6.44 |
 | KNN | 0.003169 | 0.003671 | 0.7177 | 9.53 |
 
-### Best Model for COF Prediction
+### Best COF Model
 
-**Artificial Neural Network (ANN)** achieved the highest prediction accuracy with:
+**Artificial Neural Network (ANN)**
 
-- **R² Score = 0.9619**
-- **MAPE = 2.79%**
+- R² Score = 0.9619
+- RMSE = 0.001349
+- MAPE = 2.79%
+
+---
+
+# Model Performance Comparison
+
+![Model Comparison](images/model_comparison_page23.png)
+
+---
+
+# Actual vs Predicted Values
+
+![Actual vs Predicted](images/actual_vs_predicted_page24.png)
 
 ---
 
 ## Key Findings
 
-- **SVR** achieved the highest accuracy for **Wear Rate prediction**.
-- **ANN** achieved the highest accuracy for **COF prediction**.
-- Machine Learning models successfully captured the complex nonlinear relationships between process parameters and tribological responses.
+- SVR achieved the highest Wear Rate prediction accuracy among all models.
+- ANN achieved the highest COF prediction accuracy.
+- Machine Learning effectively captured the complex nonlinear tribological behavior of Cu–Gr–TiC composites.
 - ML-based prediction can significantly reduce the number of experimental trials required.
-- Increasing **TiC reinforcement** improves wear resistance under lubricated sliding conditions.
-- Load was identified as the dominant factor affecting both Wear Rate and COF.
+- Increasing TiC reinforcement improved wear resistance and frictional performance.
+- Load was found to be the dominant factor affecting both Wear Rate and COF.
 
 ---
 
@@ -164,10 +187,10 @@ The following metrics were used to evaluate model performance:
 |------------|---------|
 | Python | Programming Language |
 | Pandas | Data Manipulation |
-| NumPy | Numerical Computation |
+| NumPy | Numerical Computing |
 | Matplotlib | Data Visualization |
 | Scikit-Learn | Machine Learning Models |
-| Jupyter Notebook | Model Development & Analysis |
+| Jupyter Notebook | Development Environment |
 
 ---
 
@@ -175,9 +198,16 @@ The following metrics were used to evaluate model performance:
 
 ```text
 ├── Analysis_report.ipynb
-├── PPT.pdf
 ├── Dataset.csv
+├── PPT.pdf
 ├── README.md
+│
+├── images
+│   ├── workflow_page14.png
+│   ├── correlation_heatmap_page15.png
+│   ├── model_comparison_page23.png
+│   └── actual_vs_predicted_page24.png
+│
 └── requirements.txt
 ```
 
@@ -185,25 +215,42 @@ The following metrics were used to evaluate model performance:
 
 ## Conclusion
 
-This study demonstrates the effectiveness of Machine Learning techniques in predicting the tribological behavior of Cu–Gr–TiC composites.
+This study successfully developed machine learning models to predict the tribological properties of Cu–Gr–TiC composites under lubricated sliding conditions.
 
-Among all evaluated models:
+Among the evaluated models, Support Vector Regression (SVR) achieved the best Wear Rate prediction performance with an R² score of 0.8887 and MAPE of 6.24%, outperforming Random Forest, KNN, and ANN models.
 
-- **SVR** was the most reliable model for Wear Rate prediction.
-- **ANN** delivered exceptional performance for COF prediction.
+For Coefficient of Friction prediction, the Artificial Neural Network (ANN) demonstrated the highest accuracy with an R² score of 0.9619 and MAPE of 2.79%.
 
-The developed framework can support rapid material design, performance optimization, and reduction of costly experimental investigations.
+The optimization analysis further revealed that the minimum Wear Rate and COF were achieved at:
+
+- Load = 30 N
+- Sliding Distance = 8000 m
+- TiC Content = 4.5 wt.%
+
+These findings are consistent with the physical understanding that TiC reinforcement improves wear resistance while graphite contributes to self-lubrication.
+
+The developed framework provides a reliable and cost-effective approach for tribological property prediction, material optimization, and accelerated composite design.
 
 ---
 
 ## References
 
-1. **Ankit et al. (2023)** – Prediction of Tribological Performance of Cu–Gr–TiC Composites Based on Response Surface Methodology and Worn Surface Analysis.
+1. Ankit et al. (2023) – Prediction of Tribological Performance of Cu–Gr–TiC Composites Based on Response Surface Methodology and Worn Surface Analysis.
 
-2. **Huifeng Ning et al. (2023)** – Modeling and Prediction of Tribological Properties of Copper/Aluminum–Graphite Self-Lubricating Composites using Machine Learning Algorithms.
+2. Huifeng Ning et al. (2023) – Modeling and Prediction of Tribological Properties of Copper/Aluminum–Graphite Self-Lubricating Composites using Machine Learning Algorithms.
 
-3. **Ankit et al. (2023)** – Synergetic Influence of TiC and Graphite Particles on Tribological Performance of Cu-Based Composites Prepared by Flake Powder Metallurgy.
+3. Ankit et al. (2023) – Synergetic Influence of TiC and Graphite Particles on Tribological Performance of Cu-Based Composites Prepared by Flake Powder Metallurgy.
 
+4. Siddeshkumar et al. (2025) – Machine Learning Models for Wear Rate Prediction of Nano Hybrid MMCs.
 
+---
 
+## Authors
 
+**Gaurav Kumar**  
+**Manas Srivastava**  
+**Sameer Kanaujia**  
+**Sudhanshu Shukla**
+
+Department of Mechanical Engineering  
+Kamla Nehru Institute of Technology (KNIT), Sultanpur, Uttar Pradesh, India
