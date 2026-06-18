@@ -249,6 +249,7 @@ The developed framework provides a reliable and cost-effective approach for trib
 **Manas Srivastava**
 
 
-Department of Mechanical Engineering
+Department of Mechanical Engineering,
+
 Kamla Nehru Institute of Technology (KNIT), Sultanpur, Uttar Pradesh, India
 India
